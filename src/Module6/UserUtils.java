@@ -6,7 +6,7 @@ package Module6;
 
     public class UserUtils {
 
-        User[] uniqueUsers(User[] users){
+       public static User[] uniqueUsers(User[] users){
             for (int i = 0; i < users.length-1; i++) {
                 for (int j = 1; j < users.length; j++) {
                     if (users[i].equals(users[j])) users[j] = null;
@@ -15,7 +15,7 @@ package Module6;
             return deleteEmptyUsers(users);
         }
 
-        User[] usersWithConditionalBalance(User[] users, int balance){
+         public static User[] usersWithConditionalBalance(User[] users, int balance){
             int count = 0;
             for (User us : users) {
                 if (us.getBalance() == balance) count++;
@@ -31,13 +31,13 @@ package Module6;
             return res;
         }
 
-        final void paySalaryToUsers(User[] users){
+        public static void paySalaryToUsers(User[] users){
             for (User us : users){
                 us.setBalance(us.getBalance()+us.getSalary());
             }
         }
 
-        final long[] getUsersId(User[] users){
+        public static long[] getUsersId(User[] users){
             long[] res = new long[users.length];
             int index = 0;
             for (User user : users){
@@ -47,7 +47,7 @@ package Module6;
             return res;
         }
 
-        User[] deleteEmptyUsers(User[] users){
+      public static User[] deleteEmptyUsers(User[] users){
             int quantityOfEmptyUs = 0;
             for (User user : users){
                 if (user == null) quantityOfEmptyUs++;
