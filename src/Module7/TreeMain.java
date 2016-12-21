@@ -1,6 +1,7 @@
 package Module7;
 
 import Module4.First.Currency;
+import java.util.Iterator;
 
 import java.util.*;
 
@@ -21,7 +22,7 @@ public class TreeMain {
         User user9 = new User(9, "Vlad", "Gad", "Odesa", 12000);
         User user10 = new User(10, "Vanja", "Zhmot", "Barca", 22000);
 
-        Set<Order> list = new TreeSet<>();
+        TreeSet<Order> list = new TreeSet<>();
         list.add(new Order(1, 1300, Currency.USD, "item1", "shop1", user1));
         list.add(new Order(2, 1400, Currency.UAH, "item2", "shop2", user2));
         list.add(new Order(3, 2200, Currency.USD, "item2", "shop2", user3));
@@ -33,19 +34,53 @@ public class TreeMain {
         list.add(new Order(10, 2200, Currency.USD, "item10", "shop10", user10));
         list.add(new Order(10, 2200, Currency.USD, "item10", "shop10", user10));
 
-        Iterator<Order> iterator = list.iterator();
-        checkPetrov(list);
+        //checkLastName(list,"Petrov");
+
+        //deleteUsd(list);
+        maxPrice(list);
     }
-
-    public static Set<Order>checkPetrov(Set<Order> list) {
-        LinkedList<Order> newList = new LinkedList<>(list);
-            for (Order order : newList) {
-                if (order.getUser().getLastName().equals("Petrov")) {
-                    System.out.println("Petrov founded.");
-                }
-
+        public static void deleteUsd(TreeSet <Order> list){
+        Iterator iter = list.iterator();
+        while (iter.hasNext()) {
+            Order elem = (Order) iter.next();
+            if (elem.getCurrency() == Currency.USD) {
+                iter.remove();
             }
-        return list;
         }
+        System.out.println(list);
+        }
+
+
+
+
+    public static boolean checkLastName(Set<Order> list, String lastName) {
+        boolean a = false;
+        for (Order order : list) {
+            if (order.getUser().getLastName().equals(lastName)) {
+                a = true;
+            }
+        }
+        return a;
     }
+
+    public static void maxPrice(Set <Order> list) {
+        Iterator iter = list.iterator();
+        while (iter.hasNext()) {
+            Order elem = (Order) iter.next();
+            if (elem.getPrice() < 5500) {
+                iter.remove();
+            }
+        }
+        System.out.println(list);
+    }
+
+}
+
+
+
+
+
+
+
+
 
